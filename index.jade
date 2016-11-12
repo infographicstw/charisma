@@ -31,7 +31,7 @@ html(lang="en")
     script(type="text/javascript",src="plotd3.js")
   body(ng-app="main",ng-controller="main")
     .text-center
-      h1 #[img(src="img/avatar.png")] 你的人格特質分析測驗
+      h1 #[img(src="img/avatar.png")] #[span 你的]人格特質分析測驗
       p 智慧、熱情與直覺... 屬於你的本質是什麼？天然呆是你的代名詞嗎？十個問題，看出你的人格特質！
       .fb-like-link(style="margin: 10px")
         .fb-like(data-href="http://data.infographics.tw/viz/charisma/",data-width="400",data-layout="button_count",data-action="like",data-show-faces="true",data-share="true")
@@ -44,14 +44,14 @@ html(lang="en")
     br
     #result.text-center
       h2 測驗結果
-      p 三種成份分別佔據三元圖的三個角落。你比較靠近哪一個角落呢？
+      p 三種成份分別佔據三元圖的三個角落。你靠近哪個角落呢？
       .btn.btn-default.btn-sm(ng-click="active=0",ng-class="{'active':!active}",style="margin-right:5px") 全部
       .btn-group
         .btn.btn-default.btn-sm(style="color:#00a0d8",ng-click="active=1",ng-class="{'active':active==1}") 男性
         .btn.btn-default.btn-sm(style="color:#ed006b",ng-click="active=2",ng-class="{'active':active==2}") 女性
         .btn.btn-default.btn-sm(style="color:#cdcd00",ng-click="active=3",ng-class="{'active':active==3}") 其它
-      div(style="display:inline-block;vertical-align:middle")
-        .input-group(style="width:200px;margin-left:5px")
+      #ctrl(style="display:inline-block;vertical-align:middle")
+        .input-group(style="margin-left:5px")
           input.form-control.input-sm(placeholder="找名字..",ng-model="name")
           .input-group-btn
             .btn.btn-default(style="height:30px;padding:4px 16px",ng-click="search()") 找
@@ -60,7 +60,7 @@ html(lang="en")
       #ternary
       a#plotdb-logo.text-center(href="https://plotdb.com/",target="_blank") #[span POWER BY PLOTDB] #[img(src="img/plotdb.png")]
       br
-      small(style="color:#999") * 為了讓點能夠盡量不要互相重疊，每個點都從原本的中心稍稍做了些偏移。
+      small(style="color:#999") * 為了讓點盡量不互相重疊，每個點都從原本的中心稍做了些偏移。
     br
     hr
     br

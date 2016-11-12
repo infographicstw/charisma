@@ -20,7 +20,9 @@ h1 img
   vertical-align: top
   border-radius: 3px
   box-shadow: 0 1px 3px rgba(0,0,0,0.4)
-
+@media(max-width: 640px)
+  h1 span
+    display: none
 #questionnaire
   border-top: 5px solid #444
   border-bottom: 5px solid #444
@@ -40,3 +42,13 @@ h1 img
 #plotdb-logo
   font-size: 14px
   color: #ccc
+#ctrl .input-group
+  width: 200px
+
+@media(max-width: 640px)
+  #ctrl .input-group
+    width: 160px
+  #result
+    .btn.btn-default
+      padding-left: 6px
+      padding-right: 6px
