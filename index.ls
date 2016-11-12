@@ -38,6 +38,9 @@ angular.module \main, <[]>
         $scope.chart.config {}
         $scope.chart.data fields
         $scope.chart.attach document.getElementById(\ternary)
+        if $scope.do-search =>
+          $scope.do-search = false
+          $scope._search!
       .error (d) ->
     $scope.root = d3.select \#ternary
     $scope.set-active = ->
@@ -46,7 +49,15 @@ angular.module \main, <[]>
           if !$scope.active or it.category == <[全部 男 女 其它]>[$scope.active] => return "block"
           return "none"
     $scope.$watch 'active', -> $scope.set-active!
+    $scope._search = ->
+      $scope.root.selectAll \circle .attr do
+        display: ->
+          if it.name.indexOf($scope.name) >= 0 => return "block"
+          return "none"
+    $scope.clear = -> $scope.set-active!
     $scope.search = ->
+      $scope.do-search = true
+      $scope.refresh!
       $scope.root.selectAll \circle .attr do
         display: ->
           if it.name.indexOf($scope.name) >= 0 => return "block"
