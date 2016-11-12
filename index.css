@@ -35,3 +35,12 @@ h1 img {
 #result .btn.active {
   color: #000 !important;
 }
+#plotdb-logo img {
+  width: 14px;
+  height: 14px;
+  vertical-align: text-top;
+}
+#plotdb-logo {
+  font-size: 14px;
+  color: #ccc;
+}
