@@ -1,0 +1,89 @@
+doctype html
+//- basic libraries: jquery(1.10.2), d3js(3.5.4), angularjs(1.3.15), bootstrap(3.0)/semantic-ui(0.9.3/0.9.5)
+//-                  fontawesome(4.4.0), reactjs(0.14.0)
+- var use = { cdn: true, og: true, favicon: true }
+- var lib = { jquery: true, d3js: true, angular: true, bootstrap: true, semantic: false, fontawesome: true, reactjs: false, revealjs: false }
+- var assets = "assets"
+- var favicon = "img/thumbnail.png"
+- var title = "給網友的人格特質分析測驗"
+- var og = {}
+- og.title = title
+- og.twitter = {type: "summary_large_image", site: "@zbryikt", creator: "@zbryikt"}
+- og.domain = "data.infographics.tw"
+- og.url = ""
+- og.thumbnail = {width: 1200, height: 630, type: "image/png"}
+- og.thumbnail.url = "http://data.infographics.tw/viz/charisma/img/thumbnail.png"
+- og.author = "infographicstw"
+- og.section = "Taiwan"
+- og.keyword = "charisma,ternary,visualization"
+- og.description = "智慧、熱情與直覺... 屬於你的本質是什麼？天然呆是你的代名詞嗎？十個問題，看出你的人格特質！"
+html(lang="en")
+  head(prefix="og: http://ogp.me/ns#")
+    meta(charset="utf-8")
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title= title
+    // libraries
+    include library.jade
+    // custom files
+    link(rel="stylesheet",type="text/css",href="index.css")
+    link(rel="stylesheet",type="text/css",href="http://localhost/css/render/pdb.css")
+    script(type="text/javascript",src="http://localhost/js/pack/loader.js")
+    script(type="text/javascript",src="http://localhost/lib/plotd3/0.1.0/index.js")
+  body(ng-app="main",ng-controller="main")
+    .text-center
+      h1 #[img(src="img/avatar.png")] 你的人格特質分析測驗
+      p 智慧、熱情與直覺... 屬於你的本質是什麼？天然呆是你的代名詞嗎？十個問題，看出你的人格特質！
+      .fb-like-link(style="margin: 10px")
+        .fb-like(data-href="http://data.infographics.tw/viz/charisma/",data-width="400",data-layout="button_count",data-action="like",data-show-faces="true",data-share="true")
+
+    iframe#questionnaire(
+    frameborder="0",marginheight="0",marginwidth="0",
+    src="https://docs.google.com/forms/d/e/1FAIpQLSdnbWS5IY6MJAjHeV9Vkt-0h3hcwj_ixIp7pJ2dUqVfqk8aDQ/viewform?embedded=true")
+    br
+    hr
+    br
+    #result.text-center
+      h2 測驗結果
+      p 三種成份分別佔據三元圖的三個角落。你比較靠近哪一個角落呢？
+      .btn.btn-default.btn-sm(ng-click="active=0",ng-class="{'active':!active}",style="margin-right:5px") 全部
+      .btn-group
+        .btn.btn-default.btn-sm(style="color:#00a0d8",ng-click="active=1",ng-class="{'active':active==1}") 男性
+        .btn.btn-default.btn-sm(style="color:#ed006b",ng-click="active=2",ng-class="{'active':active==2}") 女性
+        .btn.btn-default.btn-sm(style="color:#cdcd00",ng-click="active=3",ng-class="{'active':active==3}") 其它
+      div(style="display:inline-block;vertical-align:middle")
+        .input-group(style="width:200px;margin-left:5px")
+          input.form-control.input-sm(placeholder="找名字..",ng-model="name")
+          .input-group-btn
+            .btn.btn-default(style="height:30px;padding:4px 16px",ng-click="search()") 找
+            .btn.btn-default(style="height:30px;padding:4px 8px",ng-click="clear()") 清除
+      div: small 還是找不到嗎？試試看 #[a(href="#ternary",ng-click="refresh()") 重新載入] 吧
+      #ternary
+    br
+    hr
+    br
+    .text-center
+      .fb-box
+        .fb-like-box(data-href="https://www.facebook.com/data.visualize",data-colorscheme="light",
+          data-show-faces="false",data-header="false",data-stream="false",data-show-border="false")
+    br
+    br
+
+    script(type="text/javascript",src="index.js")
+    #fb-root
+    script.
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&appId=1587437048209186&version=v2.0";
+        fjs.parentNode.insertBefore(js, fjs);
+
+      }(document, 'script', 'facebook-jssdk'));</script>
+    script.
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-59333798-1', 'auto');
+      ga('send', 'pageview');
+
